@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ChakraProvider, Box, Button, Heading, } from '@chakra-ui/react';
 import './App.css';
 
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -12,7 +11,6 @@ import useLiveUpdates from './hooks/useLiveUpdates';
 
 const AppContent = () => {
   const { theme, toggleTheme } = useTheme();
-  const { colorMode, toggleColorMode } = useColorMode();
   const [adminAuthenticated, setAdminAuthenticated] = useState(false);
   const [leaderboardScores, setLeaderboardScores] = useState([
     { id: 1, name: 'Team A', points: 0 },
@@ -23,37 +21,36 @@ const AppContent = () => {
   const statsTableRef = useRef(null);
   const { scores, liveMatchRef, scrollToLiveMatch } = useLiveUpdates(leaderboardScores);
 
-  const bgColor =('gray.50', 'gray.800');
-  const textColor =('gray.800', 'white');
-
   const handleAdminLogin = () => {
     setAdminAuthenticated(true);
   };
 
+  const themeClass = theme === 'light' ? 'light-theme' : 'dark-theme';
+
   return (
-    <Box bg={bgColor} color={textColor} minH="100vh" p={4}>
-      <Button onClick={toggleTheme} mb={4} colorScheme="teal">
+    <div className={themeClass} style={{ minHeight: '100vh', padding: '16px' }}>
+      <button onClick={toggleTheme} style={{ marginBottom: '16px' }}>
         Toggle Theme (Current: {theme})
-      </Button>
+      </button>
       <Router>
         <Routes>
           <Route path="/" element={
-            <Box maxW="6xl" mx="auto">
-              <Heading as="h1" size="2xl" mb={6} textAlign="center">
+            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+              <h1 style={{ fontSize: '2rem', marginBottom: '24px', textAlign: 'center' }}>
                 Sports League Score Tracker
-              </Heading>
-              <Box display="flex" gap={4} mb={6} flexWrap="wrap">
-                <Button onClick={() => statsTableRef.current?.resetFilter()} colorScheme="blue">
+              </h1>
+              <div style={{ display: 'flex', gap: '16px', marginBottom: '24px', flexWrap: 'wrap' }}>
+                <button onClick={() => statsTableRef.current?.resetFilter()}>
                   Reset Stats Filter
-                </Button>
-                <Button onClick={scrollToLiveMatch} colorScheme="green">
+                </button>
+                <button onClick={scrollToLiveMatch}>
                   Scroll to Live Match
-                </Button>
-              </Box>
+                </button>
+              </div>
               <MatchList />
               <StatsTable ref={statsTableRef} />
               <Leaderboard />
-            </Box>
+            </div>
           } />
           <Route path="/admin" element={
             adminAuthenticated ? (
@@ -65,17 +62,16 @@ const AppContent = () => {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
-    </Box>
+    </div>
   );
 };
 
 function App() {
   return (
-    <ChakraProvider>
-      <ThemeProvider>
-        <AppContent />
-      </ThemeProvider>
-    </ChakraProvider>
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
+export default App;

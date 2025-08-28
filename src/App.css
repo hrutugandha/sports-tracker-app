@@ -1,52 +1,13 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Dark theme styles */
-.dark-theme {
-  background-color: #121212;
-  color: #e0e0e0;
+/* Light theme styles */
+.light-theme {
+  background-color: #ffffff;
+  color: #333333;
   min-height: 100vh;
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-button {
+.light-theme button {
   margin: 5px;
   padding: 8px 12px;
   font-size: 1rem;
@@ -58,11 +19,11 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.light-theme button:hover {
   background-color: #0056b3;
 }
 
-input {
+.light-theme input {
   margin: 5px;
   padding: 6px;
   font-size: 1rem;
@@ -70,28 +31,99 @@ input {
   border-radius: 4px;
 }
 
-table {
+.light-theme table {
   margin: 10px auto;
   border-collapse: collapse;
   width: 90%;
   max-width: 800px;
 }
 
-th, td {
+.light-theme th, .light-theme td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
 }
 
-th {
+.light-theme th {
   background-color: #007bff;
   color: white;
 }
 
-tr:nth-child(even) {
+.light-theme tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-tr:hover {
+.light-theme tr:hover {
   background-color: #ddd;
+}
+
+.light-theme .match-list-title {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.light-theme .league-select {
+  margin-bottom: 16px;
+  padding: 8px;
+}
+
+/* Dark theme styles */
+.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dark-theme button {
+  margin: 5px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #1e88e5;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.dark-theme button:hover {
+  background-color: #1565c0;
+}
+
+.dark-theme input {
+  margin: 5px;
+  padding: 6px;
+  font-size: 1rem;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.dark-theme table {
+  margin: 10px auto;
+  border-collapse: collapse;
+  width: 90%;
+  max-width: 800px;
+}
+
+.dark-theme th, .dark-theme td {
+  border: 1px solid #444;
+  padding: 8px;
+  text-align: center;
+}
+
+.dark-theme th {
+  background-color: #1e88e5;
+  color: white;
+}
+
+.dark-theme tr:nth-child(even) {
+  background-color: #333;
+}
+
+.dark-theme tr:hover {
+  background-color: #444;
 }

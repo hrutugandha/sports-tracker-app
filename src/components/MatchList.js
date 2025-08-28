@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Select, Text, Spinner, ListItem } from '@chakra-ui/react';
 
 const API_URL = 'http://localhost:5000/api/matches'; // Local API endpoint
 
@@ -7,7 +6,6 @@ const leagues = [
   { id: '4328', name: 'English Premier League' },
   { id: '4335', name: 'Spanish La Liga' },
   { id: '4331', name: 'German Bundesliga' },
-  // Add more leagues as needed
 ];
 
 const MatchList = () => {
@@ -33,35 +31,36 @@ const MatchList = () => {
   }, [selectedLeague]);
 
   return (
-    <Box>
-      <Text fontSize="2xl" mb={4}>Match List</Text>
-      <Select
+    <div>
+      <h2 className="match-list-title">Match List</h2>
+      <select
         id="league-select"
         value={selectedLeague}
         onChange={(e) => setSelectedLeague(e.target.value)}
-        mb={4}
+        className="league-select"
       >
         {leagues.map((league) => (
           <option key={league.id} value={league.id}>
             {league.name}
           </option>
         ))}
-      </Select>
+      </select>
 
       {loading ? (
-        <Spinner />
+        <div>Loading...</div>
       ) : matches.length === 0 ? (
-        <Text>No matches found.</Text>
+        <div>No matches found.</div>
       ) : (
-
+        <ul style={{ paddingLeft: '16px' }}>
           {matches.map((match) => (
-            <ListItem key={match.id}>
+            <li key={match.id}>
               {match.event} - {match.date} {match.time}
-            </ListItem>
+            </li>
           ))}
-        >
+        </ul>
       )}
-    </Box>
+    
+    </div>
   );
 };
 
